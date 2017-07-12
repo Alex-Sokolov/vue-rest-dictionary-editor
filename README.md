@@ -82,7 +82,8 @@ URL REST-endpoint, относительно которой строятся др
 Заголовок, отображаемый над списком элементов
 
 **schema**
-Схема для vue-form-generator для генерации формы редактирования элементов
+Схема для vue-form-generator для генерации формы редактирования элементов.
+https://icebob.gitbooks.io/vueformgenerator/content/schema.html
 
 **addToStart**
 Флаг, добавлять ли новые элементы в начало массива (по умолчанию `false`)
