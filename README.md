@@ -89,7 +89,25 @@ URL REST-endpoint, относительно которой строятся др
 
 ## Дополнительные слоты
 
-- above-sidebar
-- under-sidebar
-- header
-- footer
+### sidebar-item
+Можно использовать для переопределения шаблона отображения элемента в списке. Слоту передаётся входными параметрами элемент:
+``` vue
+<dictionary-editor title="Список сотрудников" :rest-url="restUrl" :id-prop="idProp" :name-prop="nameProp" :response-prop="responseProp" :schema="schema" :add-to-start="true">
+	<template slot="sidebar-item" scope="props">
+		{{ props.last_name }} {{ props.name }} {{ props.middle_name }}
+	</template>
+</dictionary-editor>
+```
+
+### above-sidebar
+Можно использовать например для добавления дополнительных кнопок над списком
+
+### under-sidebar
+Можно использовать например для добавления дополнительных кнопок под списком
+
+### header
+Слот для добавления дополнительной функциональности над формой редактирования элемента. Слоту передаётся входными параметрами элемент
+
+#### footer
+Слот для добавления дополнительной функциональности над формой редактирования элемента. Слоту передаётся входными параметрами элемент
+
