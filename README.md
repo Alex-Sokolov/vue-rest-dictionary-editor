@@ -41,23 +41,16 @@ export default {
 				{
 					type: 'input',
 					inputType: 'text',
-					label: 'Текст уведомления',
+					label: 'Название элемента',
 					model: 'summary',
-					default: 'Текст нового уведомления'
+					default: 'Название нового элемента'
 				},
 				{
 					type: 'input',
 					inputType: 'text',
-					label: 'Создано',
-					model: 'created_at',
+					label: 'Дата создания',
+					model: 'created',
 					readonly: true
-				},
-				{
-					type: 'multiselect',
-					label: 'Выбранные аккаунты',
-					model: 'accounts',
-					idProp: 'id',
-					titleProp: 'email'
 				}
 			]
 		}
