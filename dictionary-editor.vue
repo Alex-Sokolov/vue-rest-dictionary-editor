@@ -55,13 +55,13 @@
 
 							<div class="btn-toolbar" role="toolbar">
 								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-success" @click="save()">
+									<button type="button" class="btn btn-success" @click="save">
 										Сохранить изменения
 										<i class="fa fa-fw fa-save"></i>
 									</button>
 								</div>
 								<div class="btn-group" role="group">
-									<button type="button" class="btn btn-danger" @click="remove()">
+									<button type="button" class="btn btn-danger" @click="remove">
 										Удалить элемент
 										<i class="fa fa-fw fa-times"></i>
 									</button>
@@ -79,7 +79,7 @@
 </template>
 
 <style>
-/* Список словарей (скролл с небольшим количеством видимых элементов и переносы длинных названий */
+/* Список словарей (скролл с небольшим количеством видимых элементов и переносы длинных названий) */
 
 .dictionary-list-group {
 	max-height: 300px;
