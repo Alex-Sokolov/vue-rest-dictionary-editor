@@ -11,12 +11,18 @@ Vue-компонент для быстрой реализации странич
 
 ``` vue
 <template>
-	<dictionary-editor title="Список уведомлений" :rest-url="restUrl" :id-prop="idProp" :name-prop="nameProp" :response-prop="responseProp" :schema="schema" :add-to-start="true">
-	</dictionary-editor>
+	<dictionary-editor title="Список уведомлений"
+		:rest-url="restUrl"
+		:id-prop="idProp"
+		:name-prop="nameProp"
+		:response-prop="responseProp"
+		:schema="schema"
+		:add-to-start="true"
+	/>
 </template>
 
 <script>
-import DictionaryEditor from 'components/dictionary-editor.vue';
+import DictionaryEditor from 'components/dictionary-editor.vue'
 
 export default {
 	components: {
@@ -93,7 +99,14 @@ https://icebob.gitbooks.io/vueformgenerator/content/schema.html
 ### sidebar-item
 Можно использовать для переопределения шаблона отображения элемента в списке. Слоту передаётся входными параметрами элемент:
 ``` vue
-<dictionary-editor title="Список сотрудников" :rest-url="restUrl" :id-prop="idProp" :name-prop="nameProp" :response-prop="responseProp" :schema="schema" :add-to-start="true">
+<dictionary-editor title="Список сотрудников"
+	:rest-url="restUrl"
+	:id-prop="idProp"
+	:name-prop="nameProp"
+	:response-prop="responseProp"
+	:schema="schema"
+	:add-to-start="true"
+>
 	<template slot="sidebar-item" scope="props">
 		{{ props.last_name }} {{ props.name }} {{ props.middle_name }}
 	</template>
@@ -111,4 +124,3 @@ https://icebob.gitbooks.io/vueformgenerator/content/schema.html
 
 ### footer
 Слот для добавления дополнительной функциональности над формой редактирования элемента. Слоту передаётся входными параметрами элемент
-
