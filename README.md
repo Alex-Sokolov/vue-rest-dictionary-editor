@@ -18,6 +18,7 @@ Vue-компонент для быстрой реализации странич
 		:response-prop="responseProp"
 		:schema="schema"
 		:add-to-start="true"
+    :enable-search="true"
 	/>
 </template>
 
@@ -30,7 +31,7 @@ export default {
 	},
 	data: () => ({
 		// REST URL
-		restUrl: location.href,
+		restUrl: '/api/v1/endpoint',
 
 		// Имя свойства c ID элементов
 		idProp: 'id',
@@ -93,6 +94,9 @@ https://icebob.gitbooks.io/vueformgenerator/content/schema.html
 
 #### addToStart
 Флаг, добавлять ли новые элементы в начало массива (по умолчанию `false`)
+
+#### enableSearch
+Флаг, отображать ли поиск по элементам (по умолчанию `false`)
 
 ## Дополнительные слоты
 
