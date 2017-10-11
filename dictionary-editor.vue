@@ -46,15 +46,15 @@
     <div class="col-md-8">
 
       <div v-if="!selected" class="alert alert-info">
-        Выберите элемент в списке для редактирования или
-        <a href="#" class="new" @click.prevent="add">добавьте новый</a>
+        Выберите элемент в списке для редактирования
+        <a href="#" class="new" @click.prevent="add" v-if="allowedAdd">или добавьте новый</a>
       </div>
       <div v-else class="panel panel-default">
         <div class="panel-body">
 
           <slot name="header" :selected="selected"></slot>
 
-          <vue-form-generator :schema="schema" :model="selected"></vue-form-generator>
+          <vue-form-generator :schema="schema" :model="selected" :options="formOptions" @validated="formValidated"></vue-form-generator>
 
           <slot name="footer" :selected="selected"></slot>
 
@@ -145,7 +145,17 @@ export default {
     selectedIndex: null,
 
     // Строка поиска
-    search: ''
+    search: '',
+
+    // Флаг валидности формы
+    validated: false,
+
+    // Опции vue-form-generator
+    // Для валидации формы после загрузки / после каждого изменения
+    formOptions: {
+      validateAfterLoad: true,
+      validateAfterChanged: true
+    }
   }),
   computed: {
     // Флаг наличия элементов в списке
@@ -186,6 +196,12 @@ export default {
       this.selectedIndex = null;
     },
 
+    // Обработка события валидации формы
+    // меняем флаг по которому определяем заполненность полей
+    formValidated(isValid, errors) {
+      this.validated = isValid;
+    },
+
     // Флаг выбранного элемента в списке
     isActive(index) {
       return this.selectedIndex === index;
@@ -193,6 +209,11 @@ export default {
 
     // Добавление нового элемента в список
     add() {
+      if (!this.allowedAdd) {
+        console.error('Попытка добавить элемент в список, когда allowedAdd = false')
+        return;
+      }
+
       axios.get(`${this.restUrl}/new`)
         .then((response) => response.data)
         .then((response) => {
@@ -286,6 +307,11 @@ export default {
 
     // Сохранение выбранного элемента
     save() {
+      if (!this.validated) {
+        alertify.error('Заполните обязательные поля формы');
+        return;
+      }
+
       // Флаг что элемент добавленный и ещё несохранённый в базе
       const isAdded = this.selected[this.addedProp] === true;
 
