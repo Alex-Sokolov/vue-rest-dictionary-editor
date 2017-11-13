@@ -4,43 +4,49 @@
   <div class="row">
     <div class="col-md-4">
 
-      <slot name="above-sidebar"></slot>
-
-      <div class="form-group" v-if="allowedAdd">
-        <button type="button" class="btn btn-block btn-default" @click="add">
-          <i class="fa fa-fw fa-plus"></i>
-          Добавить элемент
-        </button>
-      </div>
-
-      <div class="form-group" v-if="enableSearch">
-        <input type="text" class="form-control" placeholder="Найти..." v-model="search">
-      </div>
-
       <div class="panel panel-default">
-        <div class="panel-heading bg-grey-salsa">
-          {{ title }}
-        </div>
-        <div class="list-group dictionary-list-group">
-          <div v-if="loading" class="list-group-item list-group-item-warning">
-            Загрузка элементов...
+        <div class="panel-body">
+
+          <slot name="above-sidebar"></slot>
+
+          <div class="form-group" v-if="allowedAdd">
+            <button type="button" class="btn btn-block btn-default" @click="add">
+              <i class="fa fa-fw fa-plus"></i>
+              Добавить элемент
+            </button>
           </div>
-          <div v-else-if="!haveItems" class="list-group-item list-group-item-warning">
-            Нет элементов
+
+          <div class="form-group" v-if="enableSearch">
+            <input type="text" class="form-control" placeholder="Найти..." v-model="search">
           </div>
-          <button type="button" v-else v-for="(item, index) in filteredList" :key="item[idProp]" :class="['list-group-item', isActive(index) ? 'active' : '']" @click="select(item)" title="Выбрать элемент для редактирования">
-            <slot name="sidebar-item" v-bind="item">
-              {{ item[nameProp] }}
-            </slot>
+
+          <div class="panel panel-default">
+            <div class="panel-heading bg-grey-salsa">
+              {{ title }}
+            </div>
+            <div class="list-group dictionary-list-group">
+              <div v-if="loading" class="list-group-item list-group-item-warning">
+                Загрузка элементов...
+              </div>
+              <div v-else-if="!haveItems" class="list-group-item list-group-item-warning">
+                Нет элементов
+              </div>
+              <button type="button" v-else v-for="(item, index) in filteredList" :key="item[idProp]" :class="['list-group-item', isActive(index) ? 'active' : '']" @click="select(item)" title="Выбрать элемент для редактирования">
+                <slot name="sidebar-item" v-bind="item">
+                  {{ item[nameProp] }}
+                </slot>
+              </button>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-default btn-block" @click="loadDefault" v-if="defaultItemsUrl">
+            Загрузить элементы по умолчанию
           </button>
+
+          <slot name="under-sidebar"></slot>
+
         </div>
       </div>
-
-      <button type="button" class="btn btn-default btn-block" @click="loadDefault" v-if="defaultItemsUrl">
-        Загрузить элементы по умолчанию
-      </button>
-
-      <slot name="under-sidebar"></slot>
 
     </div>
     <div class="col-md-8">
